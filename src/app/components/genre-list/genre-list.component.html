@@ -1,0 +1,28 @@
+<br>
+<h1 class="float-start" style="text-align: center;">Lista dei Generi</h1>
+<br>
+<div *ngIf="_userService.getLoggedUser()" style="text-align: center;">
+  <a class="btn btn-dark col-md-3" routerLink="/genres/add">AGGIUNGI GENERE</a>
+</div>
+<!--waiting loading -->
+<div class="container-fluid" *ngIf="loadingGenre">
+  Loading genres...
+</div>
+<!-- Visualizzazione generi -->
+<div class="container" style="width: 100%; margin-top: 30px;">
+  <div class="row row-3" style=" height: 300px">
+
+    <div class="card col-sm-6 col-lg-3" *ngFor="let genre of genres"
+      style="width: 300px; text-align: center;  border: 1px solid black;">
+      <fa-icon [icon]="faFilm" size="7x"></fa-icon>
+      <div class="card-body">
+        <h2>{{genre.name}}</h2>
+        <span *ngIf="_userService.getLoggedUser().id!= -1 &&_userService.getLoggedUser().id== genre.created_by"
+          class="edit">
+          <fa-icon [icon]="faEdit" routerLink="/genres/add/genre.id"></fa-icon>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

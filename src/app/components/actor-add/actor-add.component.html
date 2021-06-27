@@ -1,0 +1,44 @@
+<h2 style="text-align:center">Aggiungi un Attore</h2>
+
+<div class="container">
+    <form class="row g-3">
+
+        <!-- Nome -->
+        <div class="col-md-6">
+          <label for="firstname" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="firstname" [(ngModel)]="firstname" name="firstname">
+        </div>
+
+        <!-- Cognome -->
+        <div class="col-md-6">
+          <label for="lastname" class="form-label">Cognome</label>
+          <input type="text" class="form-control" id="lastname" [(ngModel)]="lastname" name="lastname">
+        </div>
+
+        <!-- Data di Nascita -->
+        <div class="col-md-6">
+            <label for="birthdate" class="form-label">Data di Nascita</label>
+            <input type="date" class="form-control" id="birthdate" [(ngModel)]="birthdate" name="birthdate">
+        </div>
+
+      <!-- URL Foto -->
+      <div class="col">
+        <label for="photo_url" class="form-label">URL Foto</label>
+        <input type="text" class="form-control" id="cover_url" [(ngModel)]="photo_url" name="photo_url">
+      </div> <br>
+<br>
+      <!--photp url  -->
+      <div class="container" style="text-align: center;" >
+        <br>
+        <div class="card col" >
+          <img [src]="photo_url||'https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-portrait.png'" width="30%"
+           >
+        </div>
+      </div>
+<br>
+      <!-- Aggiungi attore -->
+        <div class="col-12" style="text-align: center;">
+          <button type="submit" class="btn btn-secondary"  (click)="addActor()">Inserisci</button>
+        </div>
+      </form>
+</div>

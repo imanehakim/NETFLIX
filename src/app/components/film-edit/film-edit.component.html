@@ -1,0 +1,138 @@
+<div style="margin: 2%;">
+  <h2 class="float-start">Modifica Film</h2>
+  <button class="btn btn-dark float-end" type="submit" (click)="showAndHideAlert()">Elimina Film</button>
+</div>
+
+<!-- Alert di conferma eliminazione -->
+<div class="container float-start" style="margin: 2%;" *ngIf="isAlertShowing">
+  <div class="alert alert-danger" role="alert">
+    <p>Vuoi confermare l'eliminazione di questo film?</p>
+    <button (click)="deleteFilm()">Si</button>
+    <button (click)="showAndHideAlert()">No</button>
+  </div>
+</div>
+
+<div class="container float-start" style="margin: 2%;">
+  <form class="row g-3">
+
+    <!-- Titolo -->
+    <div class="col-md-6">
+      <label for="title" class="form-label">Titolo</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="title" name="title">
+    </div>
+    <div class="invalid-feedback">
+      Devi inserire un titolo.
+    </div>
+
+    <!-- Regista -->
+    <div class="col-md-6">
+      <label for="director" class="form-label">Regista</label>
+      <input type="text" class="form-control" id="director" [(ngModel)]="director" name="director">
+    </div>
+
+    <!-- Descrizione -->
+    <div class="col-md-6">
+      <label for="description" class="form-label">Descrizione</label>
+      <textarea type="text" class="form-control" id="description" rows="5" [(ngModel)]="description"
+        name="description"></textarea>
+    </div>
+
+    <!-- Trama -->
+    <div class="col-md-6">
+      <label for="plot" class="form-label">Trama</label>
+      <textarea type="text" class="form-control" id="plot" rows="5" [(ngModel)]="plot" name="plot"></textarea>
+    </div>
+
+    <!-- Durata -->
+    <div class="col-md-6">
+      <label for="duration" class="form-label">Durata</label>
+      <input type="text" class="form-control" id="duration" [(ngModel)]="duration" name="duration">
+    </div>
+
+    <!-- Voto -->
+    <div class="col-md-6">
+      <label for="vote" class="form-label">Voto</label>
+      <input type="text" class="form-control" id="vote" [(ngModel)]="vote" name="vote">
+    </div>
+
+    <!-- Anno di Uscita -->
+    <div class="col-md-6">
+      <label for="release_year" class="form-label">Anno di Uscita</label>
+      <input type="number" class="form-control" id="release_year" [(ngModel)]="release_year" name="release_year">
+    </div>
+
+    <!-- Tags -->
+    <div class="col-md-6">
+      <label for="tags" class="form-label">Tags</label>
+
+      <div *ngFor="let tag of selectedTags">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{tag}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeTag(tag)">X</button>
+        </span>
+      </div> <br>
+      <input type="text" class="form-control" id="tags" placeholder="Scrivete i Tag separati da virgola"
+        [(ngModel)]="tags" name="tags" (ngModelChange)="tagIsChanged($event)">
+    </div>
+
+    <!-- attori -->
+    <div class="col-md-6">
+      <label for="actors" class="form-label">Attori</label>
+      <div *ngFor="let actor of selectedActors">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{actor}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeActor(actor)">X</button>
+        </span>
+      </div> <br>
+
+
+      <select id="actors" class="form-select" [ngModel]="selectedActor" (ngModelChange)="actorIsChanged($event)"
+        name="selectedActor" style="width:450px">
+        <option selected>Scegli...</option>
+        <option *ngFor="let actor of actorList">
+          {{actor.firstname}} {{actor.lastname}}
+        </option>
+      </select>
+    </div>
+
+    <!-- Generi -->
+    <div class="col-md-6">
+      <label for="genres" class="form-label">Generi</label>
+
+
+      <div *ngFor="let genre of selectedGenres">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{genre}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeGenre(genre)"></button>
+        </span>
+      </div> <br>
+
+      <select id="genres" class="form-select" [ngModel]="selectedGenres" (ngModelChange)="genreIsChanged($event)"
+        name="selectedGenres" style="width:450px">
+        <option selected>Scegli...</option>
+        <option *ngFor="let genre of genreList">
+          {{genre.name}}
+        </option>
+      </select>
+    </div>
+
+    <!-- URL cover -->
+    <div class="col">
+      <label for="cover_url" class="form-label">URL cover</label>
+      <input type="text" class="form-control" id="cover_url" [(ngModel)]="cover_url" name="cover_url">
+    </div> <br>
+
+    <div class="container">
+      <div class="card col">
+        <img
+          [src]="cover_url||'https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-portrait.png'"
+          height="400px" width="250px">
+      </div>
+    </div>
+
+    <!--Aggiungi film -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-secondary" (click)="editFilm()">Modifica</button>
+    </div>
+  </form>
+</div>

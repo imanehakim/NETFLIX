@@ -1,0 +1,31 @@
+<div *ngIf="display" class="page">
+
+    <h1 style="text-align: center;">{{filmDetails.title}}</h1>
+    <img src="{{filmDetails.cover_url}}" alt=”biglia” style="float:right;margin: 10px" height="400px" width="250px">
+    <h5>Trama</h5>
+    <p>{{filmDetails.plot}} </p>
+    <h5>Regista</h5>
+    <p>{{filmDetails.director}} </p>
+    <h5>Durata</h5>
+    <p>{{filmDetails.duration}} </p>
+    <h5>Anno di Rilascio</h5>
+    <p>{{filmDetails.release_year}} </p>
+    <h5>Attori</h5>
+    <div *ngFor="let actors of filmDetails.actors">
+        <ul>
+            <li>{{actors.lastname}} {{actors.firstname}} </li>
+        </ul>
+    </div>
+    <h5>Genere</h5>
+    <div *ngFor="let genre of filmDetails.genres">
+        <ul>
+            <li>{{genre.name}} </li>
+        </ul>
+    </div>
+
+</div>
+<div *ngIf="!display">
+    <h2 class="box"> Non è stato selezionato nessun film! Si prega di tornare nell'elenco dei film e selezionare quello
+        desiderato.</h2>
+
+</div>

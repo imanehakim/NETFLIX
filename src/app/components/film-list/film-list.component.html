@@ -1,0 +1,57 @@
+<!-- barra di ricerca -->
+<div class="container-fluid mt-3 mb-4">
+  <div class="input-group">
+    <div class="input-group-prepend">
+    </div>
+    <input type="text" class="form-control" placeholder="Search film" [(ngModel)]="search" (input)="searchFilm()">{{search}}
+
+  </div>
+</div>
+<!-- waiting load film -->
+<div class="container-fluid" *ngIf="loadingFilms">
+  Loading films...
+</div>
+<!-- Visualizzazione film -->
+<div style="text-align: center;">
+
+  <div *ngIf="_userService.getLoggedUser()">
+    <a class="btn btn-dark col-md-3" routerLink="/films/add">AGGIUNGI FILM</a>
+  </div>
+
+</div>
+<!-- Visualizzazione film -->
+
+
+<div class="container" style="width: 100%; margin-top: 30px;">
+  <div class="row row-3" style=" height: 300px">
+
+    <div class="card col-sm-6 col-md-4 col-lg-3" *ngFor="let film of filmsVisual" style="width: 18rem;">
+      <span *ngIf="_userService.getLoggedUser()!=null&& _userService.getLoggedUser().id== film.created_by" class="edit">
+        Modifica
+        <fa-icon [icon]="faEdit" (click)="editFilm(film.id)"></fa-icon>
+      </span>
+
+
+      <div class="card-header" style="background-color:darkgray;">
+
+        <span class="duration">Durata {{film.duration.slice(0,5)}}</span>
+        <app-star class="star mx-auto" [vote]="film.vote"></app-star>
+
+
+
+      </div>
+
+      <img src="{{film.cover_url}}" class="card-img-top" height="400px" width="250px">
+      <div class="card-body">
+
+        <h5 class="card-title">{{film.title}}</h5>
+        <p>{{film.description}}</p>
+        <br>
+        <div style="position: absolute; bottom: 15px;">
+          <a (click)="_filmService.getDetailsFilm(film)" class="btn btn-secondary">Info aggiuntive</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

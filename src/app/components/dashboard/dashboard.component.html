@@ -1,0 +1,58 @@
+<!-- waiting load film -->
+<div class="container-fluid" *ngIf="loadingFilms">
+  Loading films...
+</div>
+<!-- Visualizzazione film -->
+<div *ngIf="">
+  <a class="btn btn-success btn-outline-dark col-md-3" style="position: relative;float:right;"
+    routerLink="/films/add">AGGIUNGI FILM</a>
+</div>
+<br>
+
+<h1>Ultimi 4 film inseriti</h1>
+<div class="container" style="width: 100%; margin-top: 30px;">
+  <div class="row row-3" style=" height: 200px">
+
+    <div class="card col-sm-6 col-md-4 col-lg-3" *ngFor="let film of lastfilms" style="width: 18rem;">
+      <span *ngIf="_userService.getLoggedUser()!=null && _userService.getLoggedUser().id== film.created_by"
+        class="edit">
+        Modifica
+        <fa-icon [icon]="faEdit" (click)="editFilm(film.id)"></fa-icon>
+      </span>
+      <img src="{{film.cover_url}}" class="card-img-top " height="400px" width="250px">
+      <div class="card-body">
+        <h5 class="card-title">{{film.title}}</h5>
+        <p>{{film.description}}</p>
+        <br>
+        <div style="position: absolute; bottom: 15px;">
+          <a (click)="_filmService.getDetailsFilm(film)" class="btn btn-secondary">Info aggiuntive</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <h1>I 4 Top Film</h1>
+    <div class="container" style="width: 100%; margin-top: 30px;">
+      <div class="row row-3" style=" height: 300px">
+
+        <div class="card col-sm-6 col-md-4 col-lg-3" *ngFor="let film of topFilms" style="width: 18rem;">
+          <span *ngIf="_userService.getLoggedUser()!=null && _userService.getLoggedUser().id== film.created_by"
+            class="edit">
+            Modifica
+            <fa-icon [icon]="faEdit" (click)="editFilm(film.id)"></fa-icon>
+          </span>
+          <img src="{{film.cover_url}}" class="card-img-top" height="400px">
+          <div class="card-body">
+            <h5 class="card-title">{{film.title}}</h5>
+            <p>{{film.description}}</p>
+            <br>
+            <div style="position: absolute; bottom: 15px;">
+              <a (click)="_filmService.getDetailsFilm(film)" class="btn btn-secondary">Info aggiuntive</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

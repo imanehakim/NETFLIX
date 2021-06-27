@@ -1,0 +1,31 @@
+<h2>Aggiungi un Genere</h2>
+
+<div class="container">
+    <form class="row g-3">
+
+        <!-- Nome -->
+        <div class="col-md-6">
+          <label for="name" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+        </div>
+
+      <!-- URL Immagine -->
+      <div class="col">
+        <label for="image_url" class="form-label">URL Foto</label>
+        <input type="text" class="form-control" id="image_url" [(ngModel)]="image_url" name="image_url">
+      </div> <br>
+
+      <!-- Immagine se presente -->
+      <div class="container">
+        
+          <img [src]="image_url||'https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-portrait.png'" height="400px" width="250px">
+       
+        <br>
+      </div>
+
+      <!-- aggiungi genere -->
+      <div class="container" *ngIf="userService.getLoggedUser()" style="text-align: center;">
+        <button class="btn btn-dark float-end" type="submit" (click)="addGenre()">Aggiungi Genere</button>
+      </div>
+      </form>
+</div>

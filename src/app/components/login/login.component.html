@@ -1,0 +1,10 @@
+<div class="container">
+  <form method="POST">
+    <label for="username" class="form-label">Username: </label><br>
+    <input type="text" class="form-control" name="username" [(ngModel)]="username"><br><br>
+    <label for="password" class="form-label">Password:</label><br>
+    <input type="password" class="form-control" name="password" [(ngModel)]="password"><br><br>
+    <input type="checkbox" name="remember-me" [(ngModel)]="rememberMe"> Remember Me <br>
+    <button type="submit" class="btn btn-dark" name="login" (click)="login()">Login</button>
+  </form>
+</div>

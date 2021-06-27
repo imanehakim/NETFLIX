@@ -1,0 +1,11 @@
+<div>
+    <span *ngFor="let star of fullStars">
+        <fa-icon [icon]="faStar"></fa-icon>
+    </span>
+    <span *ngIf="halfStars==1">
+        <fa-icon [icon]="faStarHalfAlt"></fa-icon>
+    </span>
+    <span *ngFor="let star of voidStars">
+        <fa-icon [icon]="faStarEmpty"></fa-icon>
+    </span>
+</div>

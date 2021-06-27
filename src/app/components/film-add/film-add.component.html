@@ -1,0 +1,170 @@
+<h1 style="text-align: center;" >Aggiungi un nuovo film</h1>
+
+
+<div class="container">
+<div class="row">
+ <form name="form" class="col-md-8">
+        <div class="form-group row">
+          <label for="title" class="col-sm-2 col-form-label" required>Title *</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              [(ngModel)]="film.title"
+              name="title"
+              placeholder="Inserisci il titolo"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="director" class="col-sm-2 col-form-label">Regista</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="director"
+              [(ngModel)]="film.director"
+              name="director"
+              placeholder="inserire il Regista"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="cover_url" class="col-sm-2 col-form-label">cover</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="cover_url"
+              [(ngModel)]="film.cover_url"
+              name="cover_url"
+              placeholder="Inserisci il link della cover del film"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-sm-2 col-form-label">Descrizione</label>
+          <div class="col-sm-10">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              [(ngModel)]="film.description"
+              name="description"
+              placeholder="Inserire una breve descrizione"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="plot" class="col-sm-2 col-form-label">Trama</label>
+          <div class="col-sm-10">
+            <textarea
+              type="text"
+              class="form-control"
+              id="plot"
+              [(ngModel)]="film.plot"
+              name="plot"
+              placeholder="Inserire la trama dettagliata"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group row position-relative">
+          <label for="duration" class="col-sm-2 col-form-label">Film duration</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="duration"
+              [(ngModel)]="film.duration"
+              name="duration"
+              placeholder="HH:MM:SS"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="actors" class="col-sm-2 col-form-label">Actors</label>
+            <div class="col-sm-10 d-flex flex-wrap">
+              <span
+                *ngFor="let actor of actors"
+                class="border rounded d-inline-block label m-1"
+                [ngClass]="actor.selected ? 'btn-dark' : 'btn-outline-dark'"
+                (click)="actorSelect(actor.id)"
+                [attr.id]="actor.id"
+              >
+                {{ actor.firstname }} {{ actor.lastname }}
+              </span>
+            </div>
+          </div>
+          <div class="form-group row position-relative">
+            <label for="release_year" class="col-sm-2 col-form-label">Anno</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="release_year"
+                [(ngModel)]="film.release_year"
+                name="release_year"
+                placeholder="Inserire anno di rilascio"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="genres" class="col-sm-2 col-form-label">Genre</label>
+            <div class="col-sm-10 d-flex flex-wrap">
+              <span
+                *ngFor="let genre of genres"
+                class="border rounded d-inline-block label m-1"
+                [ngClass]="genre.selected ? 'btn-dark' : 'btn-outline-dark'"
+                (click)="genreSelect(genre.name)"
+                [attr.id]="genre.name"
+              >
+                {{genre.name}} 
+              </span>
+            </div>
+          </div>
+          <div class="form-group row position-relative">
+            <label for="vote" class="col-sm-2 col-form-label">Voto</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="vote"
+                [(ngModel)]="film.vote"
+                name="vote"
+                placeholder="da 0 a 5"
+              />
+            </div>
+        
+          </div>
+          <div class="form-group row position-relative">
+            <label for="tags" class="col-sm-2 col-form-label">Tag</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="tags"
+                [(ngModel)]="film.tags"
+                name="tags"
+                placeholder="inserisci tags "
+              />
+            </div>
+        
+          </div>
+          <br>
+<button (click)="addFilm()" type="button" class="btn btn-secondary">SALVA</button>
+
+  </form>
+
+  <div class="col-md-4">
+    <img
+      [src]="
+        film.cover_url ||
+        'https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-portrait.png'
+      "
+      height="400px" width="250px"
+      class="img-thumbnail mb-3 rounded"
+    />
+  </div>
+</div>
+</div>

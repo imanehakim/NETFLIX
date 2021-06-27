@@ -1,0 +1,113 @@
+<div style="margin: 2%;">
+  <h2 class="float-start">Benvenuto {{username}}</h2>
+</div>
+
+<div class="container float-start" style="margin: 2%;">
+  <form class="row g-3">
+
+    <!-- Username -->
+    <div class="col-md-6">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+    </div>
+
+    <!-- Password -->
+    <div class="col-md-6">
+      <label for="password" class="form-label">Password</label>
+      <input type="text" class="form-control" id="password" [(ngModel)]="password" name="password">
+    </div>
+
+    <!-- Nome -->
+    <div class="col-md-6">
+      <label for="firstname" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="firstname" [(ngModel)]="firstname" name="firstname">
+    </div>
+
+    <!-- Cognome -->
+    <div class="col-md-6">
+      <label for="lastname" class="form-label">Cognome</label>
+      <input type="text" class="form-control" id="lastname" [(ngModel)]="lastname" name="lastname">
+    </div>
+
+    <!-- Data di Nascita -->
+    <div class="col-md-6">
+      <label for="birthdate" class="form-label">Data di Nascita</label>
+      <input type="date" class="form-control" id="birthdate" [(ngModel)]="birthdate" name="birthdate">
+    </div>
+
+    <!-- Films -->
+    <div class="col-md-6">
+      <label for="films" class="form-label">Film Preferiti</label>
+      <div *ngFor="let films of selectedFilms">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{films}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeFilm(films)">X</button>
+        </span>
+      </div> <br>
+      <select id="films" class="form-select" [ngModel]="selectedFilms" (ngModelChange)="filmIsChanged($event)"
+        name="selectedFilm" style="width:450px">
+        <option selected>Scegli...</option>
+        <option *ngFor="let film of filmList">
+          {{film.title}}
+        </option>
+      </select>
+    </div>
+
+
+    <!-- Actors -->
+    <div class="col-md-6">
+      <label for="actors" class="form-label">Attori Preferiti</label>
+      <div *ngFor="let actor of selectedActors">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{actor}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeActor(actor)">X</button>
+        </span>
+      </div> <br>
+      <select id="actors" class="form-select" [ngModel]="selectedActor" (ngModelChange)="actorIsChanged($event)"
+        name="selectedActor" style="width:450px">
+        <option selected>Scegli...</option>
+        <option *ngFor="let actor of actorList">
+          {{actor.firstname}}{{actor.lastname}}
+        </option>
+      </select>
+    </div>
+
+    <!-- Generi -->
+    <div class="col-md-6">
+      <label for="genres" class="form-label">Generi Preferiti</label>
+      <div *ngFor="let genre of selectedGenres">
+        <span class="badge squared-pill bg-secondary" style="float: left; margin-bottom: 2%;">
+          {{genre}}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeGenre(genre)">X</button>
+        </span>
+      </div> <br>
+      <select id="genres" class="form-select" [ngModel]="selectedGenres" (ngModelChange)="genreIsChanged($event)"
+        name="selectedGenres" style="width:450px">
+        <option selected>Scegli...</option>
+        <option *ngFor="let genre of genreList">
+          {{genre.name}}
+        </option>
+      </select>
+    </div>
+
+    <!-- URL Foto -->
+    <div class="col">
+      <label for="photo_url" class="form-label">URL Foto</label>
+      <input type="text" class="form-control" id="cover_url" [(ngModel)]="photo_url" name="photo_url">
+    </div> <br>
+
+    <!-- Foto se presente -->
+    <div class="container">
+
+      <img
+        [src]="photo_url|| 'https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-portrait.png'"
+        width="200px" height="400px">
+
+    </div>
+
+    <!-- Modifica user -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-secondary" (click)="editUser()">Modifica</button>
+    </div>
+  </form>
+</div>

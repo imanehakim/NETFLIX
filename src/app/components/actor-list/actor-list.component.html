@@ -1,0 +1,25 @@
+<div class="container" style="width: 100%; margin-top: 30px;">
+  <div style="margin-top: 2%;">
+    <h1 class="float-start" style="text-align: center;">Lista degli Attori</h1>
+    <div *ngIf="userService.getLoggedUser()" style="text-align: center;">
+      <button class="btn btn-dark float-end" type="submit" (click)="addActor()">Aggiungi Attore</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="card col-md-4 col-lg-3" *ngFor="let actor of actors" style="width: 18rem;">
+
+      <div class="card-body">
+        <h3 class="card-title">{{actor.lastname}} {{actor.firstname}}</h3>
+        <div *ngIf="userService.getLoggedUser()!=null  && userService.getLoggedUser().id == actor.created_by"
+          style="margin-left: 40%;">
+          <fa-icon [icon]="faEdit" (click)="editActor(actor.id)"></fa-icon>
+        </div>
+        <p>Data di nascita: <br>{{actor.birthdate}}</p>
+        <br>
+
+      </div>
+
+    </div>
+  </div>
+</div>

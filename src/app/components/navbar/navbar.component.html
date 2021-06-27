@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#" style="color: red;">NETFLIX</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">HOME</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="films/list" (click)="films()">FILMS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="actors/list" (click)="actors()">ACTORS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="genres/list" (click)="genres()">GENRES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login" (click)="login()" *ngIf="!userService.getLoggedUser()">LOGIN </a>
+      </li>
+    </ul>
+
+
+
+    <div class="dropdown" *ngIf="userService.getLoggedUser()">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{userService.getLoggedUser().firstname}} {{userService.getLoggedUser().lastname}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="user/edit">Modifica Profilo</a>
+        <a class="dropdown-item" href="#" (click)="logOut()">Logout</a>
+
+      </div>
+    </div>
+  </div>
+</nav>
